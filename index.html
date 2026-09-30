@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursiva | Laboratorio de llamadas</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="#" aria-label="Recursiva, inicio"><span class="brand-mark">R</span> recursiva<span class="brand-dot">.</span></a>
+        <div class="topbar-meta"><span class="live-dot"></span> LABORATORIO DE ALGORITMOS <span class="topbar-divider">/</span> JAVA</div>
+        <div class="topbar-version">VISUALIZADOR 3D <span>02</span></div>
+    </header>
+
+    <main class="container">
+        <section class="panel editor-panel">
+            <div class="section-heading"><div><span class="eyebrow">01 / ENTRADA</span><h1>Traza la recursión.</h1></div><span class="language-tag">JAVA</span></div>
+            <div class="editor-label"><span class="status-light"></span> EDITOR DE CÓDIGO <span id="methodCount">0 MÉTODOS</span></div>
+            <div class="code-container">
+<textarea id="codeEditor" spellcheck="false">
+public static int sumaDigitos(int n) {
+    if (n &lt; 10) return n;
+    return (n % 10) + sumaDigitos(n / 10);
+}
+</textarea>
+            </div>
+            <div class="call-config">
+                <div class="call-heading"><span class="eyebrow">02 / PUNTO DE PARTIDA</span><span class="auto-tag"><span>✳</span> DETECCIÓN AUTOMÁTICA</span></div>
+                <div class="call-fields">
+                    <label class="field"><span>MÉTODO</span><select id="methodSelect" aria-label="Método recursivo"><option value="">Analizando código...</option></select></label>
+                    <label class="field"><span>ARGUMENTOS INICIALES</span><input id="argumentInput" type="text" aria-label="Argumentos iniciales" value="123" autocomplete="off" spellcheck="false"></label>
+                </div>
+                <div class="call-preview"><span>LLAMADA</span><code id="callPreview">sumaDigitos(123)</code></div>
+            </div>
+            <button class="btn primary" id="btnAnalyze"><span>Construir visualización</span><span aria-hidden="true">↗</span></button>
+            <div class="editor-message" id="editorMessage" role="status">Edita el código o ejecuta el ejemplo detectado.</div>
+        </section>
+
+        <section class="panel visualizer-panel">
+            <div class="viz-heading">
+                <div><span class="eyebrow">03 / EJECUCIÓN EN VIVO</span><h2>Call stack <span class="heading-slash">/</span> viaje 3D</h2></div>
+                <div class="run-counter"><span id="depthValue">00</span><small>PROFUNDIDAD</small></div>
+            </div>
+            <div class="controls-bar">
+                <div class="transport-controls">
+                    <button class="icon-btn" id="btnReset" title="Reiniciar" aria-label="Reiniciar" disabled>↺</button>
+                    <button class="icon-btn" id="btnBack" title="Paso anterior" aria-label="Paso anterior" disabled>←</button>
+                    <button class="play-btn" id="btnPlay" disabled><span class="play-icon">▶</span> <span>Reproducir</span></button>
+                    <button class="icon-btn" id="btnStep" title="Paso siguiente" aria-label="Paso siguiente" disabled>→</button>
+                </div>
+                <label class="speed-control" for="speedRange"><span>VELOCIDAD</span><input id="speedRange" type="range" min="250" max="1600" value="900" step="50"><output id="speedValue">1.0×</output></label>
+            </div>
+            <div class="progress-track"><div id="progressFill"></div></div>
+            <div class="visualization-grid">
+                <div class="viz-card stack-card">
+                    <div class="viz-card-heading"><h3>PILA DE LLAMADAS</h3><span id="stackCount">0 ACTIVAS</span></div>
+                    <div class="stack-container" id="stackContainer"><div class="empty-state">Tu pila aparecerá aquí.</div></div>
+                </div>
+                <div class="viz-card scene-card">
+                    <div class="viz-card-heading"><h3>RECORRIDO DE LLAMADAS</h3><span id="scenePhase">EN ESPERA</span><button class="scene-view-reset" id="btnCameraReset" type="button" title="Centrar cámara" aria-label="Centrar cámara">◎</button></div>
+                    <div class="scene-container" id="sceneContainer" aria-label="Escena 3D de llamadas recursivas"></div>
+                    <div class="code-walkthrough" aria-live="polite">
+                        <div class="code-step-label"><span>LÍNEA ACTIVA</span><strong id="codeLineNumber">--</strong></div>
+                        <code id="codeLine">Ejecuta una traza para recorrer el código.</code>
+                    </div>
+                </div>
+            </div>
+            <div class="trace-footer"><div class="trace-title"><span class="eyebrow">04 / ÚLTIMO EVENTO</span><div id="currentEvent">En espera de ejecución</div></div><div class="trace-meta"><span id="stepCounter">00 / 00</span><span class="trace-separator"></span><span id="resultValue">RESULTADO: --</span></div></div>
+            <div class="log-container" id="logContainer" aria-live="polite"><div class="log-entry system">Sistema listo. Elige una llamada para comenzar.</div></div>
+        </section>
+    </main>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
